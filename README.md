@@ -6,18 +6,17 @@ I plan to add photo API later (currently the icloud API has been deactivated by 
 
 Example :
 ```go
-
-    session := ifog.NewSession()
-	err := session.Login(login.RequestBody{"myAppleId", "myPassword"})
+	session := ifog.NewSession()
+	var err = session.Login(login.RequestBody{"myAppleId", "myPassword"})
 	if err != nil {
 		panic(err)
 	}
-	error := session.PopulateDevices()
-	if error != nil {
-		panic(error)
+	err = session.PopulateDevices()
+	if err != nil {
+		panic(err)
 	}
 	myDevice := session.Devices[0]
-	fmt.Println("My " + myDevice.DeviceClass + " is located at : " + string(myDevice.Location.Latitude) + ";" + string(myDevice.Location.Longitude))
+	fmt.Println("My " + myDevice.DeviceClass + " is located at : " + myDevice.Location.String())
 ```
 
 
