@@ -6,6 +6,9 @@ import (
 )
 
 const URL_KEY = "findme"
+const ENDPOINT_URL = "/fmipservice/client/web"
+const REFRESH_CLIENT_URL = ENDPOINT_URL + "/refreshClient"
+const SEND_MESSAGE_URL = ENDPOINT_URL + "/sendMessage"
 
 const Method = http.MethodPost
 
@@ -15,10 +18,23 @@ type ClientContext struct {
 	SelectedDevice string `json:"selectedDevice"`
 }
 
-type RequestBody struct {
+type RequestCommonBody struct {
 	Dsid          string        `json:"dsid"`
 	ClientId      string        `json:"clientId"`
+}
+
+type RefreshClientRequestBody struct {
+	RequestCommonBody
 	ClientContext ClientContext `json:"clientContext"`
+}
+
+type SendMessageRequestBody struct {
+	RequestCommonBody
+	Device string `json:"device"`
+	Subject string `json:"subject"`
+	Sound bool `json:"sound"`
+	UserText bool `json:"userText"`
+	Text string `json:"text"`
 }
 
 type ResponseBody struct {
