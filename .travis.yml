@@ -12,10 +12,9 @@ before_install:
   - go get github.com/mattn/goveralls
 
 script:
-  - go test -race -coverprofile=coverage_models -covermode=atomic
-  - go test -race -coverprofile=coverage_main.txt -covermode=atomic
-  - $HOME/gopath/bin/gover
-  - $HOME/gopath/bin/goveralls -coverprofile=gover.coverprofile -service travis-ci
+  - go test -race -coverprofile=models.coverprofile -covermode=atomic
+  - go test -race -coverprofile=main.coverprofile -covermode=atomic
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - $HOME/gopath/bin/gover
+  - $HOME/gopath/bin/goveralls -coverprofile=gover.coverprofile -service travis-ci
