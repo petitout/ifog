@@ -20,18 +20,21 @@ type Session struct {
 	User        models.User
 	Webservices map[string]models.WebService
 	Devices     []models.Device
+	LoginURL    string
 }
 
 // NewSession creates a new Icloud session
 func NewSession() *Session {
-	return new(Session)
+	s := new(Session)
+	s.LoginURL = login.URL
+	return s
 }
 
 // Login allows to login into ICloud
-func (s *Session) Login(loginURL string, requestBody login.RequestBody) error {
+func (s *Session) Login(requestBody login.RequestBody) error {
 	s.client = &http.Client{}
 	responseBody := login.ResponseBody{}
-	err := s.sendRequest(requestBody, loginURL, &responseBody, true)
+	err := s.sendRequest(requestBody, s.LoginURL, &responseBody, true)
 	if err != nil {
 		return err
 	}
@@ -104,8 +107,4 @@ func (s *Session) sendRequest(body interface{}, url string, responseBody interfa
 func setCommonHeaders(request *http.Request) {
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Origin", "https://www.icloud.com")
-}
-
-func (s *Session) Devices() []models.Device {
-	return s.Devices
 }

@@ -28,8 +28,9 @@ func TestSession_Login(t *testing.T) {
 		responseToSend, _ := json.Marshal(*response)
 		w.Write(responseToSend)
 	}))
+	s.LoginURL = ts.URL
 	defer ts.Close()
-	err := s.Login(ts.URL, login.RequestBody{AppleId: "myAppleId", Password: "mySuperPassword"})
+	err := s.Login(login.RequestBody{AppleId: "myAppleId", Password: "mySuperPassword"})
 	if err != nil {
 		t.Errorf("Session.Login() error = %v, wantErr %v", err, nil)
 	}
