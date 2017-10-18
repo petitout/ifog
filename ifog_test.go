@@ -9,9 +9,7 @@ import (
 	"testing"
 
 	"github.com/petitout/ifog/fmip"
-
 	"github.com/petitout/ifog/login"
-
 	"github.com/petitout/ifog/models"
 )
 
