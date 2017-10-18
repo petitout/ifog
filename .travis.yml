@@ -12,7 +12,7 @@ before_install:
   - go get github.com/mattn/goveralls
 
 script:
-  - go test -race -coverprofile=models.coverprofile -covermode=atomic
+  - go test -race -coverprofile=models.coverprofile -covermode=atomic ./models
   - go test -race -coverprofile=main.coverprofile -covermode=atomic
 
 after_success:
