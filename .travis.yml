@@ -6,9 +6,16 @@ go:
 
 before_install:
   - go get -t -v ./...
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/axw/gocov/gocov
+  - go get github.com/modocache/gover
+  - go get github.com/mattn/goveralls
 
 script:
-  - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
+  - go test -race -coverprofile=coverage_models -covermode=atomic
+  - go test -race -coverprofile=coverage_main.txt -covermode=atomic
+  - $HOME/gopath/bin/gover
+  - $HOME/gopath/bin/goveralls -coverprofile=gover.coverprofile -service travis-ci
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
