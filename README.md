@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/petitout/ifog.svg?branch=master)](https://travis-ci.org/petitout/ifog)
-[![codecov](https://codecov.io/gh/petitout/ifog/branch/master/graph/badge.svg)](https://codecov.io/gh/petitout/ifog)
+[![Coverage Status](https://coveralls.io/repos/github/petitout/ifog/badge.svg?branch=master)](https://coveralls.io/github/petitout/ifog?branch=master)
 
 # ifog
 Go client for iCloud rest APIs
